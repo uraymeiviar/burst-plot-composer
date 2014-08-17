@@ -1,0 +1,8 @@
+<div class="plotcmd" id="plotcmd_{{PLOT_ID}}">
+    java -Xmx<span id="plotcmd-jvm_{{PLOT_ID}}">768</span>m -cp pocminer.jar:lib/*:lib/akka/*:lib/jetty/* pocminer.POCMiner generate
+    <span id="plotcmd-account_{{PLOT_ID}}">16050713509424738513</span>
+    <span id="plotcmd-startnonce_{{PLOT_ID}}">0</span>
+    <span id="plotcmd-noncecount_{{PLOT_ID}}">1048576</span>
+    <span id="plotcmd-stagsize_{{PLOT_ID}}">1024</span>
+    <span id="plotcmd-threads_{{PLOT_ID}}">2</span>
+</div>

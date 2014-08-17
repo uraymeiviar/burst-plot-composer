@@ -267,3 +267,14 @@ hr {
     font-size: 0.8em;
     color : #bbbbbb;
 }
+
+.plotcmd {
+    font-family: 'Source Code Pro';
+    font-size: 0.6em;
+}
+
+#plotcmd_container {
+    margin: 0.25em;
+    padding:0.25em;
+    border:1px dotted #666666;
+}

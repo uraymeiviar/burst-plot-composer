@@ -15,6 +15,7 @@ function getTemplate(path, callback){
 var plotlist = [];
 var staggerSizeKB = 1024;
 var totalKB = 256*1024*1024;
+var javaVM = 768;
 
 function start() {
     var plot0 = {
@@ -55,8 +56,8 @@ function onTotalSizeUnitChanged() {
 }
 
 function addplot() {
+    var plotId = plotlist.length;
     getTemplate('templates/plotitem.template', function(template){
-        var plotId = plotlist.length;
         var plotIdStr = plotId;
         if(plotId < 10) {
             plotIdStr = '0'+plotId;
@@ -78,6 +79,14 @@ function addplot() {
         };
         plotlist.push(plotData);
         updateTotalKB();
+    });
+
+    getTemplate('templates/plotcmd.template', function(template){
+        var html = Mustache.render(template, {
+            PLOT_ID:plotId
+        });
+        $('#plotcmd_container').append($(html));
+        updatePlotCmd();
     });
 }
 
@@ -112,6 +121,8 @@ function onStaggerValueChanged() {
     else {
         $('#staggerSizeValue').val(staggerSizeKB);
     }
+
+    updatePlotCmd();
 }
 
 function onPlotSizeUnitChanged(id) {
@@ -172,10 +183,10 @@ function updateStartNonceFrom(id) {
             else break;
         }
     }
+    updatePlotCmd();
 }
 
 function onPlotSizeChanged(id) {
-    var plotUnitType = $('#PlotSizeType_'+id).val();
     var plotUnit = $('#PlotSizeUnit_'+id).val();
     var plotSize = parseInt($('#PlotSizeValue_'+id).val(), 10);
     if(isNaN(plotSize)) {
@@ -201,11 +212,92 @@ function onPlotSizeChanged(id) {
     plotlist[id].nonceCount = plotNonceSize;
     updateStartNonceFrom(id);
     updateTotalKB();
+    updatePlotCmd();
 }
 
 function deletePlot(id){
     plotlist[id].enabled = false;
     $('#Plot_'+id).remove();
+    $('#plotcmd_'+id).remove();
     updateStartNonceFrom(id-1);
     updateTotalKB();
+    updatePlotCmd();
+}
+
+function onThreadCountChange() {
+    var value = parseInt($('#threadCount').val(),10);
+    if(isNaN(value)){
+        value = 0;
+    }
+    for(var i=0 ; i<plotlist.length ; i++){
+        if(plotlist[i].enabled === true) {
+            var element = $('#plotcmd-threads_'+i);
+            if(element.length > 0){
+                element.html(value);
+            }
+        }
+    }
+}
+
+function onJVMChange() {
+    var value = parseInt($('#jvmSize').val(),10);
+    if(isNaN(value)){
+        value = 0;
+    }
+    for(var i=0 ; i<plotlist.length ; i++){
+        if(plotlist[i].enabled === true) {
+            var element = $('#plotcmd-jvm_'+i);
+            if(element.length > 0){
+                element.html(value);
+            }
+        }
+    }
+}
+
+function updatePlotCmd(){
+    var jvmValue = parseInt($('#jvmSize').val(),10);
+    if(isNaN(jvmValue)){
+        jvmValue = 0;
+    }
+
+    var threadValue = parseInt($('#threadCount').val(),10);
+    if(isNaN(threadValue)){
+        threadValue = 0;
+    }
+
+    var accountNum = $('#accountNumber').val();
+
+    for(var i=0 ; i<plotlist.length ; i++){
+        if(plotlist[i].enabled === true) {
+            var element = $('#plotcmd-jvm_'+i);
+            if(element.length > 0){
+                element.html(jvmValue);
+            }
+
+            element = $('#plotcmd-threads_'+i);
+            if(element.length > 0){
+                element.html(threadValue);
+            }
+
+            element = $('#plotcmd-account_'+i);
+            if(element.length > 0){
+                element.html(accountNum);
+            }
+
+            element = $('#plotcmd-stagsize_'+i);
+            if(element.length > 0){
+                element.html(staggerSizeKB);
+            }
+
+            element = $('#plotcmd-startnonce_'+i);
+            if(element.length > 0){
+                element.html(plotlist[i].nonceStart);
+            }
+
+            element = $('#plotcmd-noncecount_'+i);
+            if(element.length > 0){
+                element.html(plotlist[i].nonceCount);
+            }
+        }
+    }
 }

@@ -13,9 +13,10 @@
 <body onload="start();">
 <div class="title"><b>Burst</b> Plots Composer</div>
 <div class="content">
-    <span class="inputLabel">Account Number : </span><input class="inputstring" type="number" value="16050713509424738513"/><br/>
-    <span class="inputLabel">Number of Threads : </span><input type="number" value="2" min="1" max="99" step="1"/><br/>
-    <span class="inputLabel">Stagger Size : </span><input id="staggerSizeValue" onchange="onStaggerValueChanged();" type="number" value="1024" min="256" max="8191" step="64"/>
+    <span class="inputLabel">Account Number : </span><input id="accountNumber" class="inputstring" type="number" value="16050713509424738513"/><br/>
+    <span class="inputLabel">Number of Threads : </span><input id="threadCount" onkeyup="onThreadCountChange()" onchange="onThreadCountChange()" type="number" value="2" min="1" max="99" step="1"/><br/>
+    <span class="inputLabel">Java VM Size : </span><input id="jvmSize" onkeyup="onJVMChange()" onchange="onJVMChange()" type="number" value="768" min="64"  step="1"/>MB<br/>
+    <span class="inputLabel">Stagger Size : </span><input id="staggerSizeValue" onkeyup="onStaggerValueChanged()" onchange="onStaggerValueChanged();" type="number" value="1024" min="256" max="8191" step="64"/>
     <select id="select_staggersize_unit" onchange="onStaggerUnitChanged()">
         <option value="KB">KB</option>
         <option value="MB">MB</option>
@@ -45,6 +46,16 @@
         </div>
     </div>
     <button value="Add Plot" onclick="addplot();">Add New Plot</button>
+    <div id="plotcmd_container">
+        <div class="plotcmd" id="plotcmd_0">
+            java -Xmx<span id="plotcmd-jvm_0">768</span>m -cp pocminer.jar:lib/*:lib/akka/*:lib/jetty/* pocminer.POCMiner generate
+            <span id="plotcmd-account_0">16050713509424738513</span>
+            <span id="plotcmd-startnonce_0">0</span>
+            <span id="plotcmd-noncecount_0">1048576</span>
+            <span id="plotcmd-stagsize_0">1024</span>
+            <span id="plotcmd-threads_0">2</span>
+        </div>
+    </div>
 </div>
 <div class="footer">
     <a href="https://github.com/uraymeiviar/burst-plot-composer">On Github</a>&nbsp;|&nbsp;
