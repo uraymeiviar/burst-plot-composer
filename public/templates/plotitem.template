@@ -1,17 +1,24 @@
 <div class="plotitem" id="Plot_{{PLOT_ID}}">
     <span id="PlotItemLabel_{{PLOT_ID}}">#00</span>
-    <select id="PlotSizeType_{{PLOT_ID}}"  onchange="onPlotUnitChanged({{PLOT_ID}});">
-        <option value="size">Plot Size</option>
-        <option value="nonce">Nonce count</option>
-    </select>
-    <input id="PlotSizeValue_{{PLOT_ID}}" type="number" value="256"/>
+    Plot Size 
+    <input id="PlotSizeValue_{{PLOT_ID}}" type="number" value="256" onkeyup="onPlotSizeChanged({{PLOT_ID}});" onchange="onPlotSizeChanged({{PLOT_ID}});"/>
     <select id="PlotSizeUnit_{{PLOT_ID}}"  onchange="onPlotSizeUnitChanged({{PLOT_ID}});">
         <option value="GB">GB</option>
         <option value="TB">TB</option>
         <option value="KB">KB</option>
         <option value="MB">MB</option>
+        <option value="Nonce">Nonce</option>
     </select>
-    Start From Nonce #
-    <input id="PlotStartValue_{{PLOT_ID}}" class="inputstring" type="number" value="0" min="0"/>
-    <button value="X" onclick="deletePlot({{PLOT_ID}});" class="deleteBtn">X</button>
+    Start Nonce#
+    <input id="PlotStartValue_{{PLOT_ID}}" onchange="onStartNonceChanged({{PLOT_ID}});" onkeyup="onStartNonceChanged({{PLOT_ID}});" class="inputstring hidden" type="number" value="0" min="0"/>
+    <span id="PlotStartValueAligned_{{PLOT_ID}}"></span>
+    &nbsp;Align
+    <div class="onoffswitch">
+        <input onchange="onNonceAlignChange({{PLOT_ID}});" type="checkbox" name="alignSwitch_{{PLOT_ID}}" class="onoffswitch-checkbox" id="alignSwitch_{{PLOT_ID}}" checked>
+        <label class="onoffswitch-label" for="alignSwitch_{{PLOT_ID}}">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+    <button value="Delete" onclick="deletePlot({{PLOT_ID}});" class="deleteBtn">Delete</button>
 </div>

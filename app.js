@@ -9,8 +9,4 @@ app.use('/', router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 var httpServer = http.createServer(app);
-httpServer.listen(8080);
-
-
-
-
+httpServer.listen(8888);
