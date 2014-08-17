@@ -2,14 +2,17 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>CryptoSLAX 0.4 Web Monitor</title>
+    <title>Burst Plot Composer</title>
+    <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="index.css" />
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/mustache.js"></script>
     <script src="js/burstplot-calc.js"></script>
 </head>
 <body onload="start();">
-    <span class="title">Burst Plots Composer</span><br/>
+<div class="title"><b>Burst</b> Plots Composer</div>
+<div class="content">
     <span class="inputLabel">Account Number : </span><input class="inputstring" type="number" value="16050713509424738513"/><br/>
     <span class="inputLabel">Number of Threads : </span><input type="number" value="2" min="1" max="99" step="1"/><br/>
     <span class="inputLabel">Stagger Size : </span><input id="staggerSizeValue" onchange="onStaggerValueChanged();" type="number" value="1024" min="256" max="8191" step="64"/>
@@ -18,39 +21,34 @@
         <option value="MB">MB</option>
     </select>
     <br/>
-    <span class="inputLabel">Total Size : </span><span id="totalSize">0</span>
-    <select id="select_totalsize_unit">
-        <option value="GB">GB</option>
+    <span class="inputLabel">Total Size : </span><span id="totalSize">256</span>
+    <select id="select_totalsize_unit" onchange="onTotalSizeUnitChanged();">
+        <option value="GB" selected>GB</option>
         <option value="TB">TB</option>
         <option value="MB">MB</option>
+        <option value="Nonce">Nonce</option>
     </select>
     <br/>
     <div id="plotitem_container">
-    <div class="plotitem" id="Plot_0">
-        <span id="PlotItemLabel_0">#00</span>
-        <select id="PlotSizeType_0" onchange="onPlotUnitChanged(0);">
-            <option value="size">Plot Size</option>
-            <option value="nonce">Nonce count</option>
-        </select>
-        <input id="PlotSizeValue_0" type="number" value="256"/>
-        <select id="PlotSizeUnit_0" onchange="onPlotSizeUnitChanged(0);">
-            <option value="GB">GB</option>
-            <option value="TB">TB</option>
-            <option value="KB">KB</option>
-            <option value="MB">MB</option>
-        </select>
-        Start From Nonce #<input id="PlotStartValue_0" class="inputstring" type="number" value="0" min="0"/>
-        <div class="onoffswitch">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-            <label class="onoffswitch-label" for="myonoffswitch">
-                <span class="onoffswitch-inner"></span>
-                <span class="onoffswitch-switch"></span>
-            </label>
+        <div class="plotitem" id="Plot_0">
+            <span id="PlotItemLabel_0">#00</span>
+            Plot Size
+            <input id="PlotSizeValue_0" type="number" value="256" onkeyup="onPlotSizeChanged(0);" onchange="onPlotSizeChanged(0);"/>
+            <select id="PlotSizeUnit_0" onchange="onPlotSizeUnitChanged(0);">
+                <option value="GB">GB</option>
+                <option value="TB">TB</option>
+                <option value="KB">KB</option>
+                <option value="MB">MB</option>
+                <option value="Nonce">Nonce</option>
+            </select>
+            Start Nonce#<input id="PlotStartValue_0" class="inputstring" onchange="onStartNonceChanged(0);" onkeyup="onStartNonceChanged(0);" type="number" value="0" min="0"/>
         </div>
-
-    </div>
     </div>
     <button value="Add Plot" onclick="addplot();">Add New Plot</button>
-
+</div>
+<div class="footer">
+    <a href="https://github.com/uraymeiviar/burst-plot-composer">On Github</a>&nbsp;|&nbsp;
+    Donate Burst : <span class="addrText">BURST-8E8K-WQ2F-ZDZ5-FQWHX</span> Bitcoin : <span class="addrText">1EvaYrFxNj94Yn3vzNKzhe5Lvef9D2N4Qm</span>
+</div>
 </body>
 </html>

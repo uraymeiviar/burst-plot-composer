@@ -11,6 +11,11 @@ html,body
     margin: 0.5em;
 }
 
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 input {
     font-family: 'Source Code Pro';
     font-size: 1em;
@@ -36,10 +41,10 @@ input {
 }
 
 .title {
-    font-size: 2em;
+    font-size: 1.8em;
     width:100%;
     background-color:#000;
-    color:#ffad00;
+    color:#fff;
     padding-left:0.2em;
 }
 
@@ -241,3 +246,24 @@ hr {
     right: 0px;
 }
 
+.footer {
+    width:100%;
+    height:38px;
+    position:absolute;
+    color:#fff;
+    bottom:0;
+    background-color: #000;
+    padding-left: 48px;
+    padding-top:8px;
+    vertical-align: middle;
+    background-image: url(https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif);
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    background-position: 8px 4px;
+}
+
+.addrText {
+    font-family: 'Source Code Pro';
+    font-size: 0.8em;
+    color : #bbbbbb;
+}
