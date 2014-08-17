@@ -1,0 +1,17 @@
+<div class="plotitem" id="Plot_{{PLOT_ID}}">
+    <span id="PlotItemLabel_{{PLOT_ID}}">#00</span>
+    <select id="PlotSizeType_{{PLOT_ID}}"  onchange="onPlotUnitChanged({{PLOT_ID}});">
+        <option value="size">Plot Size</option>
+        <option value="nonce">Nonce count</option>
+    </select>
+    <input id="PlotSizeValue_{{PLOT_ID}}" type="number" value="256"/>
+    <select id="PlotSizeUnit_{{PLOT_ID}}"  onchange="onPlotSizeUnitChanged({{PLOT_ID}});">
+        <option value="GB">GB</option>
+        <option value="TB">TB</option>
+        <option value="KB">KB</option>
+        <option value="MB">MB</option>
+    </select>
+    Start From Nonce #
+    <input id="PlotStartValue_{{PLOT_ID}}" class="inputstring" type="number" value="0" min="0"/>
+    <button value="X" onclick="deletePlot({{PLOT_ID}});" class="deleteBtn">X</button>
+</div>
