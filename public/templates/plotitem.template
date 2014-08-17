@@ -11,7 +11,15 @@
         <option value="KB">KB</option>
         <option value="MB">MB</option>
     </select>
-    Start From Nonce #
+    Start Nonce#
     <input id="PlotStartValue_{{PLOT_ID}}" class="inputstring" type="number" value="0" min="0"/>
-    <button value="X" onclick="deletePlot({{PLOT_ID}});" class="deleteBtn">X</button>
+    &nbsp;Align
+    <div class="onoffswitch">
+        <input onchange="onNonceAlignChange({{PLOT_ID}});" type="checkbox" name="alignSwitch_{{PLOT_ID}}" class="onoffswitch-checkbox" id="alignSwitch_{{PLOT_ID}}" checked>
+        <label class="onoffswitch-label" for="alignSwitch_{{PLOT_ID}}">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+    <button value="Delete" onclick="deletePlot({{PLOT_ID}});" class="deleteBtn">Delete</button>
 </div>

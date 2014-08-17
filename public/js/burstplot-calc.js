@@ -107,3 +107,5 @@ function onPlotSizeUnitChanged(id) {
         $('#PlotSizeValue_'+id).val(nonceCount*256/(1024*1024*1024));
     }
 }
+
+$("#fieldName").prop("readonly",true);
